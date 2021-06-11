@@ -33,7 +33,14 @@ def even_numbers(n):
     for x in range(n):
        if (x%2==0): 
            yield x
-    
+           
+# Definition of the generator to produce even numbers.
+def all_even():
+    n = 0
+    while True:
+        yield n
+        n += 2
+           
 @printinfo
 def testyield01():
     output = testyield()
@@ -63,6 +70,20 @@ def testyield06():
             print(next(num))
     except StopIteration: pass
 
+@printinfo
+def testyield07():
+    
+    my_gen = all_even()
+    # Generate the first 5 even numbers.
+    print('Generate the first 5 even numbers')
+    for i in range(5):
+        print(next(my_gen))
+
+    print('Now go back to generating more even numbers')
+    # Now go back to generating more even numbers.
+    for i in range(10):
+        print(next(my_gen))
+    
 def main():
     testyield01()
     testyield02()
@@ -70,6 +91,7 @@ def main():
     testyield04()
     testyield05()
     testyield06()
+    testyield07()
     
 if __name__ == "__main__":
     main()
